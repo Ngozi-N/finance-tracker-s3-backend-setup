@@ -22,4 +22,9 @@ resource "aws_dynamodb_table" "terraform_locks" {
     name = "LockID"
     type = "S"
   }
+
+  lifecycle {
+    ignore_changes = [read_capacity, write_capacity] # Prevent Terraform from failing if already exists
+  }
 }
+
